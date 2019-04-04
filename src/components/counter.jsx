@@ -2,29 +2,25 @@ import React, { Component } from "react";
 
 class Counter extends Component {
   state = {
-    count: 0,
+    value: this.props.value,
     tags: ["tag1", "tag2", "tag3"]
   };
 
-  constructor() {
-    super();
-    console.log("constructor", this);
+  constructor(props) {
+    super(props);
     // this will always access the counter object, need one for each event handler
     this.handleIncrement = this.handleIncrement.bind(this);
   }
 
-  handleIncrement(p) {
-    console.log("Increment clicked", this);
-    console.log("Name of Product: " + p);
+  handleIncrement() {
     this.setState({
-      count: this.state.count + 1
+      value: this.state.value + 1
     });
   }
 
   // Experimental, arrow function automatically inherits the this keyword
   // Doesn't require a constructor
-  /* handleIncrement = p => {
-    console.log("Name of Product: " + p);
+  /* handleIncrement = ()) => {
     this.setState({
       count: this.state.count + 1
     });
@@ -47,11 +43,13 @@ class Counter extends Component {
   }
 
   render() {
+    console.log("props: ", this.props);
     return (
       <div>
+        {this.props.children}
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
         <button
-          onClick={() => this.handleIncrement("product")}
+          onClick={() => this.handleIncrement()}
           className="btn btn-secondary btn-lg m-2"
         >
           Increment
@@ -65,12 +63,12 @@ class Counter extends Component {
 
   getBadgeClasses() {
     let classes = "badge m-2 badge-";
-    classes += this.state.count === 0 ? "warning" : "primary";
+    classes += this.state.value === 0 ? "warning" : "primary";
     return classes;
   }
 
   formatCount() {
-    const { count } = this.state;
+    const { value: count } = this.state;
     return count === 0 ? "Zero" : count;
   }
 }
