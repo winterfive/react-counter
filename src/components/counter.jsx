@@ -2,30 +2,45 @@ import React, { Component } from "react";
 
 class Counter extends Component {
   state = {
-    count: 0,
+    count: 4,
     tags: ["tag1", "tag2", "tag3"]
   };
 
   constructor() {
     super();
-    // this will always access the counter object, need oen for each event handler
+    console.log("constructor", this);
+    // this will always access the counter object, need one for each event handler
     this.handleIncrement = this.handleIncrement.bind(this);
   }
 
   handleIncrement() {
     console.log("Increment clicked", this);
+    this.setState({
+      count: this.state.count + 1
+    });
   }
+
+  // Experimental, arrow function automatically inherits the this keyword
+  // Doesn't require a constructor
+  /* handleIncrement = () => {
+    this.setState({
+      count: this.state.count + 1
+    });
+  }; */
 
   // helper method
   renderTags() {
     if (this.state.tags.length === 0) return <p>There are no tags!</p>;
 
     return (
-      <ul>
-        {this.state.tags.map(tag => (
-          <li key={tag}>{tag}</li>
-        ))}
-      </ul>
+      <div>
+        <p>I've got some tags!</p>
+        <ul>
+          {this.state.tags.map(tag => (
+            <li key={tag + "key"}>{tag}</li>
+          ))}
+        </ul>
+      </div>
     );
   }
 
