@@ -20,11 +20,22 @@ class Counter extends Component {
     );
   }
 
+  handleIncrement() {
+    console.log("Increment clicked");
+  }
+
   render() {
     return (
       <div>
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
-        <button className="btn btn-secondary btn-lg">Increment</button>
+        <button
+          className="btn btn-secondary btn-lg m-2"
+          onClick={this.handleIncrement}
+        >
+          Increment
+        </button>
+        {/* logical and */}
+        {this.state.tags.length === 0 && "Create a new tag!"}
         {this.renderTags()}
       </div>
     );
