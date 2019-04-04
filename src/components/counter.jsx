@@ -3,9 +3,18 @@ import React, { Component } from "react";
 class Counter extends Component {
   state = {
     count: 0,
-    //tags: ["tag1", "tag2", "tag3"]
-    tags: []
+    tags: ["tag1", "tag2", "tag3"]
   };
+
+  constructor() {
+    super();
+    // this will always access the counter object, need oen for each event handler
+    this.handleIncrement = this.handleIncrement.bind(this);
+  }
+
+  handleIncrement() {
+    console.log("Increment clicked", this);
+  }
 
   // helper method
   renderTags() {
@@ -20,17 +29,13 @@ class Counter extends Component {
     );
   }
 
-  handleIncrement() {
-    console.log("Increment clicked");
-  }
-
   render() {
     return (
       <div>
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
         <button
-          className="btn btn-secondary btn-lg m-2"
           onClick={this.handleIncrement}
+          className="btn btn-secondary btn-lg m-2"
         >
           Increment
         </button>
