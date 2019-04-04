@@ -13,8 +13,9 @@ class Counter extends Component {
     this.handleIncrement = this.handleIncrement.bind(this);
   }
 
-  handleIncrement() {
+  handleIncrement(p) {
     console.log("Increment clicked", this);
+    console.log("Name of Product: " + p);
     this.setState({
       count: this.state.count + 1
     });
@@ -22,7 +23,8 @@ class Counter extends Component {
 
   // Experimental, arrow function automatically inherits the this keyword
   // Doesn't require a constructor
-  /* handleIncrement = () => {
+  /* handleIncrement = p => {
+    console.log("Name of Product: " + p);
     this.setState({
       count: this.state.count + 1
     });
@@ -49,7 +51,7 @@ class Counter extends Component {
       <div>
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
         <button
-          onClick={this.handleIncrement}
+          onClick={() => this.handleIncrement("product")}
           className="btn btn-secondary btn-lg m-2"
         >
           Increment
