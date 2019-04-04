@@ -3,14 +3,29 @@ import React, { Component } from "react";
 class Counter extends Component {
   state = {
     count: 0,
-    imageUrl: "https://picsum.photos/300"
+    //tags: ["tag1", "tag2", "tag3"]
+    tags: []
   };
+
+  // helper method
+  renderTags() {
+    if (this.state.tags.length === 0) return <p>There are no tags!</p>;
+
+    return (
+      <ul>
+        {this.state.tags.map(tag => (
+          <li key={tag}>{tag}</li>
+        ))}
+      </ul>
+    );
+  }
 
   render() {
     return (
       <div>
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
         <button className="btn btn-secondary btn-lg">Increment</button>
+        {this.renderTags()}
       </div>
     );
   }
