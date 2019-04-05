@@ -53,6 +53,7 @@ class Counter extends Component {
         >
           Increment
         </button>
+        <button className="button.btn.btn-danger.btn-sm.m-2">Delete</button>
         {/* logical and */}
         {this.state.tags.length === 0 && "Create a new tag!"}
         {this.renderTags()}
