@@ -53,7 +53,12 @@ class Counter extends Component {
         >
           Increment
         </button>
-        <button className="btn btn-danger btn-sm m-2">Delete</button>
+        <button
+          onClick={this.props.onDelete} /* Raises event */
+          className="btn btn-danger btn-sm m-2"
+        >
+          Delete
+        </button>
         {/* logical and */}
         {this.state.tags.length === 0 && "Create a new tag!"}
         {this.renderTags()}
