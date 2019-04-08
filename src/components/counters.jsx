@@ -12,6 +12,16 @@ class Counters extends Component {
     ]
   };
 
+  handleReset = () => {
+    const resets = this.state.counters.map(c => {
+      c.value = 0;
+      return c;
+    });
+    this.setState({
+      counters: resets
+    });
+  };
+
   handleDelete = counterId => {
     console.log("delete: ", counterId);
     const newCounters = this.state.counters.filter(c => c.id !== counterId);
@@ -24,6 +34,12 @@ class Counters extends Component {
   render() {
     return (
       <div>
+        <button
+          onClick={this.handleReset}
+          className="btn btn-primary btn-sm m-2"
+        >
+          Reset
+        </button>
         {/* The prop values are passed to individual counters here */}
         {this.state.counters.map(counter => (
           <Counter

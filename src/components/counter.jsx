@@ -2,21 +2,8 @@ import React, { Component } from "react";
 
 class Counter extends Component {
   state = {
-    value: this.props.counter.value,
     tags: ["tag1", "tag2", "tag3"]
   };
-
-  constructor(props) {
-    super(props);
-    // this will always access the counter object, need one for each event handler
-    this.handleIncrement = this.handleIncrement.bind(this);
-  }
-
-  handleIncrement() {
-    this.setState({
-      value: this.state.value + 1
-    });
-  }
 
   // Experimental, arrow function automatically inherits the this keyword
   // Doesn't require a constructor
@@ -48,7 +35,7 @@ class Counter extends Component {
         <h4>Counter #{this.props.counter.id}</h4>
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
         <button
-          onClick={() => this.handleIncrement()}
+          onClick={() => this.props.onIncrement(this.props.counter)}
           className="btn btn-secondary btn-lg m-2"
         >
           Increment
@@ -70,12 +57,12 @@ class Counter extends Component {
 
   getBadgeClasses() {
     let classes = "badge m-2 badge-";
-    classes += this.state.value === 0 ? "warning" : "primary";
+    classes += this.props.counter === 0 ? "warning" : "primary";
     return classes;
   }
 
   formatCount() {
-    const { value: count } = this.state;
+    const { value: count } = this.props.counter;
     return count === 0 ? "Zero" : count;
   }
 }
