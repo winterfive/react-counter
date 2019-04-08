@@ -22,6 +22,16 @@ class Counters extends Component {
     });
   };
 
+  handleIncrement = counter => {
+    const currentCounters = [...this.state.counters];
+    const index = currentCounters.indexOf(counter);
+    //currentCounters[index] = { ...counter };
+    currentCounters[index].value++;
+    this.setState({
+      counters: currentCounters
+    });
+  };
+
   handleDelete = counterId => {
     console.log("delete: ", counterId);
     const newCounters = this.state.counters.filter(c => c.id !== counterId);
@@ -45,6 +55,7 @@ class Counters extends Component {
           <Counter
             key={counter.id}
             onDelete={this.handleDelete}
+            onIncrement={this.handleIncrement}
             counter={
               counter
             } /* Passing counter as an object w/ all its props */
