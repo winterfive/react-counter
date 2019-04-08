@@ -21,6 +21,11 @@ class Counter extends Component {
     }
   }
 
+  componentWillUnmount() {
+    console.log("counter unmount");
+    // Clean up timers here
+  }
+
   // helper method
   renderTags() {
     if (this.state.tags.length === 0) return <p>There are no tags!</p>;
