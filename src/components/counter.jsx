@@ -12,6 +12,14 @@ class Counter extends Component {
       count: this.state.count + 1
     });
   }; */
+  componentDidUpdate(prevProps, prevState) {
+    console.log("prev props: ", prevProps);
+    console.log("prevState: ", prevState);
+    if (prevProps.counter.value !== this.props.counter.value) {
+      // minimize calls
+      // then ajax call for new data from server
+    }
+  }
 
   // helper method
   renderTags() {
@@ -41,6 +49,7 @@ class Counter extends Component {
   }
 
   render() {
+    console.log("counter rendered");
     return (
       <div>
         <h4>Counter #{this.props.counter.id}</h4>
